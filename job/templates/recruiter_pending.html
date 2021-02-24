@@ -1,0 +1,45 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'admin_navigation.html' %}
+
+<marquee style = " font-size : 25px; color : black ; background-color : pink; font-weight : bold; margin-top:0.5% ">
+    Pending Recruiters Table
+</marquee>
+<hr>
+<div class="container">
+<table  id="example" >
+    <thead>
+    <tr style = "background-color : lightgreen">
+        <th>S.No</th>
+        <th>Full Name</th>
+        <th>Email Address</th>
+        <th>Contact</th>
+        <th>Gender</th>
+        <th>Company</th>
+        <th>Image</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr style="background : Pink">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}}  {{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.company}}</td>
+        <td><img src = "{{i.image.url}}" style="width:50px ; height:50px ; border-radius:50%"></td>
+        <td>{{i.status}}</td>
+        <td><a href="{% url 'change_status' i.id %}" class="btn btn-success" onclick="return confirm('Are you really want to change status')">Change Status</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+<marquee style = " font-size : 25px; color : black ; background-color : pink; font-weight : bold; margin-top:0.5% ">
+    Job List
+</marquee>
+<hr>
+<div class="container">
+<table  id="example" >
+    <thead>
+    <tr style = "background-color : lightgreen">
+        <th>S.No</th>
+        <th>Job Title</th>
+        <th>Salary</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Experience</th>
+        <th>Skills</th>
+        <th>Location</th>
+        <th>Receive Resume at</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr style="background : Pink">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.salary}}</td>
+        <td>{{i.start_date}}</td>
+        <td>{{i.end_date}}</td>
+        <td>{{i.experience}}</td>
+        <td>{{i.skills}}</td>
+        <td>{{i.location}}</td>
+        <td>{{i.description}}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+</div>
+
+{% endblock %}

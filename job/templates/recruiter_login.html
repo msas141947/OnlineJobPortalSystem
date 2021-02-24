@@ -1,0 +1,48 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<marquee style = " font-size : 25px; color : black ; background-color : pink; font-weight : bold; margin-top:0.5% ">
+    Recruiter Login
+</marquee>
+<hr>
+
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b>Email ID</b></label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter Email ID">
+
+    <label><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+
+    <input type="submit" class="btn btn-primary" style="margin-top:2%" >
+    <a href="{% url 'recruiter_signup' %}" class="btn btn-primary"style="margin-top:2%">Sign UP</a>
+</form>
+{% include 'footer.html' %}
+
+
+
+
+
+{% ifequal error "no" %}
+<script>
+    alert("Log in successfully");
+    window.location = ('{% url 'recruiter_home' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert(" INVALID Try Again");
+</script>
+{% endifequal %}
+
+{% ifequal error "not" %}
+<script>
+    alert(" Login status is pending try after sometime");
+</script>
+{% endifequal %}
+
+{% endblock %}

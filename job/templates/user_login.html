@@ -1,0 +1,44 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<marquee style = " font-size : 25px; color : black ; background-color : pink; font-weight : bold; margin-top:0.5% ">
+    User Login
+</marquee>
+<hr>
+
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b>Email ID</b></label>
+    <input type="email" class="form-control" name="uname" placeholder="Enter Email ID">
+
+    <label><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+
+    <input type="submit"  value="Login" class="btn btn-primary" style="margin-top:2%" >
+    <a href="{% url 'user_signup' %}" class="btn btn-primary"style="margin-top:2%">Sign UP</a>
+</form>
+
+
+
+
+
+
+{% include 'footer.html' %}
+
+{% ifequal error "no" %}
+<script>
+    alert("Log in successfully");
+    window.location = ('{% url 'user_home' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert(" INVALID Try Again");
+</script>
+{% endifequal %}
+
+{% endblock %}
